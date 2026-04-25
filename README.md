@@ -9,14 +9,15 @@ libraries:
 - discord.py
 - Playwright
 - Pillow
-Enter this to terminal for instal --  pip install discord pytest-playwright pillow
+
+Enter this to terminal for install  //   pip install discord pytest-playwright pillow
 
 COMMANDS:
 
 !shot "Your URL"
 
 Example:
-!shot hhtps://github.com/
+!shot https://github.com/
 
 
 
