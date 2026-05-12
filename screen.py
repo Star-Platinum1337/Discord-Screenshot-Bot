@@ -18,7 +18,7 @@ async def capture_and_split(url, part_height=1000):
         await browser.close()
         img = Image.open(io.BytesIO(screenshot_bytes))
         width, height = img.size
-       parts = []
+        parts = []
         for i in range(0, height, part_height):
             box = (0, i, width, min(i + part_height, height))
             part_img = img.crop(box)
@@ -26,19 +26,18 @@ async def capture_and_split(url, part_height=1000):
             part_img.save(img_byte_arr, format='PNG')
             img_byte_arr.seek(0)
             parts.append(img_byte_arr)
-            
         return parts
 
 @bot.command()
 async def shot(ctx, url: str):
     await ctx.send("In progress...")
-    
+
     try:
         image_parts = await capture_and_split(url)
         for i, part in enumerate(image_parts):
             file = discord.File(fp=part, filename=f"part_{i}.png")
             await ctx.send(content=f"Part {i+1}/{len(image_parts)}", file=file)
-            
+
     except Exception as e:
         await ctx.send(f"Error: {e}")
 
